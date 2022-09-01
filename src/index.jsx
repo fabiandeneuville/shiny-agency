@@ -7,11 +7,19 @@ import Results from './pages/Results/index';
 import Freelances from './pages/Freelances/index';
 import Error from './components/Error/index';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    font-family: 'Trbuchet MS', Helbertica, sans-serif;
+  }
+`
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+      <GlobalStyle/>
       <Header/>
         <Routes>
           <Route path='/' element={<Home/>}/>
