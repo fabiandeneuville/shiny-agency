@@ -23,10 +23,26 @@ const CardsContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
 `
 
+const PageTitle = styled.h1`
+    font-size: 30px;
+    text-align: center;
+    color: black;
+    padding-bottom: 30px;
+`
+
+const PageSubTitle = styled.h2`
+    font-size: 20px;
+    text-align: center;
+    color: #8186A0;
+    padding-bottom: 30px;
+`
+
 function Freelances(){
     return (
         <div>
-            <h1>Freelances 👩🏻‍🦳 💻 👨🏽 💻 👩🏿‍🦱 💻</h1>
+            <PageTitle>Trouvez votre prestataire</PageTitle>
+
+            <PageSubTitle>Chez Shiny nous réunissons les meilleurs profils pour vous.</PageSubTitle>
 
             <CardsContainer>
                 {freelanceProfiles.map((profile, index) => {
