@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import darkLogo from '../../assets/dark-logo.png';
-import StyledLink from '../../utils/style/link';
+import StyledLink from '../StyledLink/index';
 
 const HomeLogo = styled.img`
     height: 70px;
