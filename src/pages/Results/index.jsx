@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import StyledLink from '../../components/StyledLink/index';
 import Loader from '../../components/Loader/loader'
-import { ThemeContext } from '../../utils/context/index';
-import { useFetch } from '../../utils/hooks';
+// import { ThemeContext } from '../../utils/context/index';
+import { useFetch, useTheme } from '../../utils/hooks';
 
 const ResultsContainer = styled.div`
     display: flex;
@@ -32,7 +32,7 @@ const DescriptionWrapper = styled.div`
 `
 
 const JobTitle = styled.div`
-    color: ${({theme}) => theme === 'light' ? colors.secondary : '#FFFFFF'};
+    color: ${({ theme }) => theme === 'light' ? colors.primary : colors.backgroundLight};
     text-transform: capitalize;
     font-weight: bold;
 `
@@ -40,7 +40,8 @@ const JobTitle = styled.div`
 const JobDescription = styled.div`
     font-size: 18px;
     & > p {
-        color: ${({theme}) => theme === 'light' ? colors.secondary : '#FFFFFF'}
+        color: ${({ theme }) => (theme === 'light' ? colors.secondary : '#ffffff')};
+        margin-block-start: 5px;
     }
     & > span {
         font-size: 20px;
@@ -64,8 +65,8 @@ function formatQueryParams(answers){
 
 function Results(){
 
-    const { theme } = useContext(ThemeContext)
-    const { answers } = useContext(SurveyContext)
+    const { theme } = useTheme();
+    const { answers } = useContext(SurveyContext);
     const queryParams = formatQueryParams(answers);
 
     const {data, isLoading, error} = useFetch(

@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import darkLogo from '../../assets/dark-logo.png';
 import lightLogo from '../../assets/light-logo.png';
 import StyledLink from '../StyledLink/index';
-import { ThemeContext } from '../../utils/context/index';
-import { useContext } from 'react';
+import { useTheme } from '../../utils/hooks/index';
 
 const HomeLogo = styled.img`
     height: 70px;
@@ -18,7 +17,7 @@ const NavContainer = styled.nav`
 `
 function Header(){
 
-    const { theme } = useContext(ThemeContext)
+    const { theme } = useTheme();
 
     return (
         <div>
@@ -26,9 +25,9 @@ function Header(){
                 <Link to="/">                    
                     <HomeLogo src={theme === 'dark' ? lightLogo : darkLogo} alt="Logo de l'agence Shiny"/>
                 </Link>
-                <StyledLink to="/">Accueil</StyledLink>
-                <StyledLink to="/freelances">Freelances</StyledLink>
-                <StyledLink to="/survey/1" $isFullLink>Faire le test</StyledLink>
+                <StyledLink $theme={theme} to="/">Accueil</StyledLink>
+                <StyledLink $theme={theme} to="/freelances">Freelances</StyledLink>
+                <StyledLink $theme={theme} to="/survey/1" $isFullLink>Faire le test</StyledLink>
             </NavContainer>
         </div>
     )

@@ -6,7 +6,7 @@ import colors from '../../utils/style/colors';
 import Loader from '../../components/Loader/loader';
 import { SurveyContext } from '../../utils/context';
 import { useContext } from 'react';
-import { useFetch } from '../../utils/hooks';
+import { useFetch , useTheme } from '../../utils/hooks';
 
 
 const SurveyContainer = styled.div`
@@ -15,19 +15,25 @@ const SurveyContainer = styled.div`
     align-items: center
 `
 
+const SurveyTitle = styled.h1`
+    color: ${({ theme }) => (theme === 'light' ? '#000000' : '#FFFFFF')}
+`
+
 const QuestionTitle = styled.h2`
     text-decoration: underline;
-    text-decoration-color: ${colors.primary};
+    text-decoration-color: ${({ theme }) => (theme === 'light' ? '#000000' : '#FFFFFF')};
+    color: ${({ theme }) => (theme === 'light' ? '#000000' : '#FFFFFF')};
 `
 
 const QuestionContent = styled.span`
     margin: 30px;
+    color: ${({ theme }) => (theme === 'light' ? '#000000' : '#FFFFFF')}
 `
 
 const LinkWrapper = styled.div`
     padding-top: 30px;
     & a {
-        color: black;
+        color: ${({ theme }) => (theme === 'light' ? '#000000' : '#FFFFFF')}
     }
     & a:first-of-type {
         margin-right: 20px;
@@ -47,7 +53,8 @@ const ReplyBox = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${colors.backgroundLight};
+    background-color: ${({ theme }) => theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
+    color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
     border-radius: 30px;
     cursor: pointer;
     box-shadow: ${(props) =>
@@ -66,7 +73,7 @@ const ReplyWrapper = styled.div`
 `
 
 function Survey(){
-
+    const { theme } = useTheme();
     const { questionNumber } = useParams();
     const questionNumberInt = parseInt(questionNumber); 
     const previousQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1;
@@ -122,24 +129,26 @@ function Survey(){
 
     return (
         <SurveyContainer>
-            <h1>Questionnaire</h1>
-            <QuestionTitle>Question numéro {questionNumber}</QuestionTitle>
+            <SurveyTitle theme={theme}>Questionnaire</SurveyTitle>
+            <QuestionTitle theme={theme}>Question numéro {questionNumber}</QuestionTitle>
             {isLoading ? (
                 <Loader/>
             ) : (
-                <QuestionContent>{ surveyData && surveyData[questionNumber]}</QuestionContent>
+                <QuestionContent theme={theme}>{ surveyData && surveyData[questionNumber]}</QuestionContent>
             )}
 
             <ReplyWrapper>
                 <ReplyBox
                     onClick={() => saveReply(true)}
                     isSelected={answers[questionNumber] === true}
+                    theme={theme}
                     >
                     OUI
                 </ReplyBox>
                 <ReplyBox
                     onClick={() => saveReply(false)}
                     isSelected={answers[questionNumber] === false}
+                    theme={theme}
                     >NON</ReplyBox>
             </ReplyWrapper>
 

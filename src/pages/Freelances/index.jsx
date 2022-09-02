@@ -2,7 +2,7 @@ import Card from '../../components/Card';
 import styled from 'styled-components';
 // import { useState, useEffect } from 'react';
 import Loader from '../../components/Loader/loader';
-import { useFetch } from '../../utils/hooks';
+import { useFetch, useTheme } from '../../utils/hooks';
 
 // const freelanceProfiles = [
 //     {
@@ -29,14 +29,14 @@ const CardsContainer = styled.div`
 const PageTitle = styled.h1`
     font-size: 30px;
     text-align: center;
-    color: black;
+    color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
     padding-bottom: 30px;
 `
 
 const PageSubTitle = styled.h2`
     font-size: 20px;
     text-align: center;
-    color: #8186A0;
+    color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
     padding-bottom: 30px;
 `
 
@@ -82,6 +82,8 @@ function Freelances(){
     //     fetchProfiles()
     // }, [])
 
+    const { theme } = useTheme()
+
     const { data, isLoading, error } = useFetch(`http://localhost:8000/freelances`)
 
     const freelancersList = data?.freelancersList;
@@ -94,9 +96,9 @@ function Freelances(){
 
     return (
         <div>
-            <PageTitle>Trouvez votre prestataire</PageTitle>
+            <PageTitle theme={theme}>Trouvez votre prestataire</PageTitle>
 
-            <PageSubTitle>Chez Shiny nous réunissons les meilleurs profils pour vous.</PageSubTitle>
+            <PageSubTitle theme={theme}>Chez Shiny nous réunissons les meilleurs profils pour vous.</PageSubTitle>
 
             {isLoading ? (
                 <Loader/>
