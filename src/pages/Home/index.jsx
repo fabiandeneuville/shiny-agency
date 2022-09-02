@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import colors from '../../utils/style/color';
+import colors from '../../utils/style/colors';
 import homeIllustration from '../../assets/home-illustration.svg';
 import StyledLink from '../../components/StyledLink/index';
 

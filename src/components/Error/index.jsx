@@ -1,6 +1,6 @@
 import ErrorIllustration from '../../assets/404.svg';
 import  styled  from 'styled-components';
-import colors from '../../utils/style/color';
+import colors from '../../utils/style/colors';
 
 const ErrorWrapper = styled.div`
     display: flex;

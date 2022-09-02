@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 // import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import colors from '../../utils/style/color';
+import colors from '../../utils/style/colors';
 import Loader from '../../components/Loader/loader';
 import { SurveyContext } from '../../utils/context';
 import { useContext } from 'react';

@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { ThemeContext } from '../context/index';
+import colors from '../style/colors'
 
 const StyledGlobalStyle = createGlobalStyle`
   * {
@@ -8,7 +9,7 @@ const StyledGlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: ${({isDarkMode}) => (isDarkMode ? '#2F2E41' : 'white')}
+    background-color: ${({isDarkMode}) => (isDarkMode ? colors.backgroundDark : 'white')}
   }
 `
 

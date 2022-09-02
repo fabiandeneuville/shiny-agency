@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import colors from '../../utils/style/color';
+import colors from '../../utils/style/colors';
 import { ThemeContext } from '../../utils/context/index'
 import { useContext } from 'react';
 

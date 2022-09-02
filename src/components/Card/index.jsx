@@ -1,7 +1,7 @@
 import propTypes from 'prop-types';
 import DefaultPicture from '../../assets/profile.png';
 import styled from 'styled-components';
-import colors from '../../utils/style/color';
+import colors from '../../utils/style/colors';
 
 const CardLabel = styled.span`
     color: #5843e4;
