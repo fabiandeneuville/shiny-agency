@@ -1,7 +1,8 @@
 import Card from '../../components/Card';
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import Loader from '../../components/Loader/loader';
+import { useFetch } from '../../utils/hooks';
 
 // const freelanceProfiles = [
 //     {
@@ -47,9 +48,9 @@ const ErrorMessage = styled.p`
 
 function Freelances(){
 
-    const [freelanceProfiles, setFreelanceProfiles] = useState([]);
-    const [isDataLoading, setDataLoading] = useState(false);
-    const [error, setError] = useState(false);
+    // const [freelanceProfiles, setFreelanceProfiles] = useState([]);
+    // const [isDataLoading, setDataLoading] = useState(false);
+    // const [error, setError] = useState(false);
 
     // useEffect(() => {
     //     setDataLoading(true);
@@ -62,24 +63,28 @@ function Freelances(){
     //     .catch((error) => console.log(error))
     // }, [])
 
-    useEffect(() => {
-        async function fetchProfiles(){
-            setDataLoading(true)
-            try {
-                const response = await fetch('http://localhost:8000/freelances');
-                const { freelancersList } = await response.json();
-                setFreelanceProfiles(freelancersList);
-            }
-            catch(error) {
-                console.log(error);
-                setError(true);
-            }
-            finally {
-                setDataLoading(false);
-            }
-        }
-        fetchProfiles()
-    }, [])
+    // useEffect(() => {
+    //     async function fetchProfiles(){
+    //         setDataLoading(true)
+    //         try {
+    //             const response = await fetch('http://localhost:8000/freelances');
+    //             const { freelancersList } = await response.json();
+    //             setFreelanceProfiles(freelancersList);
+    //         }
+    //         catch(error) {
+    //             console.log(error);
+    //             setError(true);
+    //         }
+    //         finally {
+    //             setDataLoading(false);
+    //         }
+    //     }
+    //     fetchProfiles()
+    // }, [])
+
+    const { data, isLoading, error } = useFetch(`http://localhost:8000/freelances`)
+
+    const freelancersList = data?.freelancersList;
 
     if(error){
         return (
@@ -93,14 +98,14 @@ function Freelances(){
 
             <PageSubTitle>Chez Shiny nous réunissons les meilleurs profils pour vous.</PageSubTitle>
 
-            {isDataLoading ? (
+            {isLoading ? (
                 <Loader/>
             ) : (
                 <CardsContainer>
-                    {freelanceProfiles.map((profile, index) => {
+                    {freelancersList && freelancersList.map((profile, index) => {
                         return (
                             <Card
-                                key={profile.id}
+                                key={`${profile.name}-${index}`}
                                 label={profile.job}
                                 title={profile.name}
                                 picture={profile.picture}
