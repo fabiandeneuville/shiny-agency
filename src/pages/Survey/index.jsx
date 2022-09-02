@@ -152,7 +152,7 @@ function Survey(){
                     >NON</ReplyBox>
             </ReplyWrapper>
 
-            <LinkWrapper>
+            <LinkWrapper theme={theme}>
                 <Link to={`/survey/${previousQuestionNumber}`}>Question précédente</Link>
                 {questionNumberInt === 6 ? (
                     <Link to={'/results'}>Voir les résultats</Link>
