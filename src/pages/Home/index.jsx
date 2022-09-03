@@ -46,7 +46,7 @@ function Home() {
     <HomeWrapper>
       <HomeContainer theme={theme}>
         <LeftColumn>
-          <StyledTitle theme={theme}>Repérez vos besoins, on s'occupe du reste, avec les meilleurs talens</StyledTitle>
+          <StyledTitle theme={theme}>Repérez vos besoins, on s'occupe du reste, avec les meilleurs talents</StyledTitle>
           <StyledLink to="/survey/1" $isFullLink>Faire le test</StyledLink>
         </LeftColumn>
         <Illustration src={homeIllustration}/>
