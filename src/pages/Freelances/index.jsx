@@ -101,7 +101,7 @@ function Freelances(){
             <PageSubTitle theme={theme}>Chez Shiny nous réunissons les meilleurs profils pour vous.</PageSubTitle>
 
             {isLoading ? (
-                <Loader/>
+                <Loader theme={theme} data-testid="loader"/>
             ) : (
                 <CardsContainer>
                     {freelancersList && freelancersList.map((profile, index) => {
