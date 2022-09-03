@@ -1,7 +1,6 @@
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import { waitFor, screen, waitForElementToBeRemoved } from '@testing-library/react';
-import { ThemeProvider } from '../../utils/context/index';
 import { render } from '../../utils/test/index';
  
 import Freelances from './'
@@ -33,10 +32,6 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 // Ferme la simulation d'API une fois que les tests sont finis
 afterAll(() => server.close())
-
-function Wrapper({ children }){
-    return <ThemeProvider>{children}</ThemeProvider>
-}
 
 it('Should display freelancers names', async () => {
     render(<Freelances/>)
